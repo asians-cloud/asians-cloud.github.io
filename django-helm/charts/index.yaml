@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  django:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2022-06-11T15:42:38.769141+08:00"
+    description: A Helm chart for Kubernetes
+    digest: 526360c3c1ea83837b8401e441dacfa9714ed76587e76ea10c5e7824288ce808
+    name: django
+    type: application
+    urls:
+    - https://asians-cloud.github.io/django-helm/charts/django-0.1.0.tgz
+    version: 0.1.0
+generated: "2022-06-11T15:42:38.768588+08:00"
