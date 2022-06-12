@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ include "django.fullname" . }}-collectstatic-job-{{ randAlpha 6 }}
+  name: {{ include "django.fullname" . }}-collectstatic-job-{{ randAlpha 6 | lower }}
   labels:
     app.kubernetes.io/name: {{ include "django.fullname" . }}
     helm.sh/chart: {{ include "django.chart" . }}
