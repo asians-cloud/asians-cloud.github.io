@@ -21,3 +21,4 @@ spec:
               name: {{ include "django.fullname" . }}-config
       restartPolicy: Never
   backoffLimit: 4
+  ttlSecondsAfterFinished: 100
