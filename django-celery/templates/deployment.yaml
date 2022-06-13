@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "django.fullname" . }}
+  labels:
+    {{- include "django.labels" . | nindent 4 }}
+spec:
+{{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+{{- end }}
+  selector:
+    matchLabels:
+      {{- include "django.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+    {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      labels:
+        {{- include "django.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "django.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+      containers:
+        - name: "{{ .Chart.Name }}"
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          command: ['/entrypoint', 'celery']
+          args:
+            {{ range .Values.deployment.args }}
+              - {{ . }}
+            {{ end }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{ if eq .Values.celerypy.role "worker" }}
+          livenessProbe:
+              exec:
+                # bash is needed to replace the environment variable
+                command: [
+                  "sh",
+                  "-c",
+                  "celery -A config.celery_app inspect ping -d celery@$HOSTNAME"
+                ]
+              initialDelaySeconds: 60  # startup takes some time
+              periodSeconds: 60  # default is quite often and celery uses a lot cpu/ram then.
+              timeoutSeconds: 30  # default is too low
+          {{ end }}
+          {{ if eq .Values.celerypy.role "beat" }}
+          livenessProbe:
+              exec:
+                # bash is needed to replace the environment variable
+                command: [
+                  "sh",
+                  "-c",
+                  "celery -A config.celery_app status | grep -o ': OK'"
+                ]
+              initialDelaySeconds: 60  # startup takes some time
+              periodSeconds: 60  # default is quite often and celery uses a lot cpu/ram then.
+              timeoutSeconds: 30  # default is too low
+          {{- end }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "django.fullname" . }}-config
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
