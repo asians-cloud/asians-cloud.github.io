@@ -3,23 +3,23 @@ entries:
   django:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-06-13T14:08:06.91871+08:00"
+    created: "2022-06-13T14:21:47.216643+08:00"
     description: A Helm chart for Kubernetes
     digest: 2db5cc72e65ad2099efc3003c7d192c9076d2ffa7d58479fb99eabe6410f6de8
     name: django
     type: application
     urls:
-    - https://asians-cloud.github.io/django-helm/charts/django-0.1.5.tgz
+    - https://asians-cloud.github.io/django-celery/charts/django-0.1.5.tgz
     version: 0.1.5
   django-celery:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-06-13T14:08:06.918982+08:00"
+    created: "2022-06-13T14:21:47.216907+08:00"
     description: Celery template kubernetes for Gaius Project
-    digest: 6c322f274998d74fe14fabb32c61a5b9285745d75156a19eff1ca2556b267360
+    digest: 7fa85a0716b75905ec46af22c2497de5c15d102e42bec26f5ef89995908667ca
     name: django-celery
     type: application
     urls:
-    - https://asians-cloud.github.io/django-helm/charts/django-celery-0.1.5.tgz
+    - https://asians-cloud.github.io/django-celery/charts/django-celery-0.1.5.tgz
     version: 0.1.5
-generated: "2022-06-13T14:08:06.918269+08:00"
+generated: "2022-06-13T14:21:47.215851+08:00"

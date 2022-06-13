@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: asians-cloud/django-helm-application
+  repository: asians-cloud/django-celery-application
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart version.
   tag: "latest"
