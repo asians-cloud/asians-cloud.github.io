@@ -1,45 +1,25 @@
 apiVersion: v1
 entries:
-  django:
-  - apiVersion: v2
-    appVersion: 1.16.0
-    created: "2022-06-13T14:29:15.57886+08:00"
-    description: A Helm chart for Kubernetes
-    digest: 47a51c2083d9190c5b78c26ee932cbf0018c0d2e9712d526fdea424a99a6d7f2
-    name: django
-    type: application
-    urls:
-    - https://asians-cloud.github.io/django-celery/charts/django-0.1.6.tgz
-    version: 0.1.6
-  - apiVersion: v2
-    appVersion: 1.16.0
-    created: "2022-06-13T14:29:15.57839+08:00"
-    description: A Helm chart for Kubernetes
-    digest: 2db5cc72e65ad2099efc3003c7d192c9076d2ffa7d58479fb99eabe6410f6de8
-    name: django
-    type: application
-    urls:
-    - https://asians-cloud.github.io/django-celery/charts/django-0.1.5.tgz
-    version: 0.1.5
   django-celery:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-06-13T14:29:15.579517+08:00"
+    created: "2022-06-13T14:44:09.915547+08:00"
     description: Celery template kubernetes for Gaius Project
-    digest: a5b0b10a64884524d73de01c582a7d31867799c4bca17d64f7ede6fda4183af0
+    digest: 7a422f9e68e4d850a294b8e6b7e9fe3185d2f62b20fb22c7e2f06fd09a38f4bb
     name: django-celery
     type: application
     urls:
-    - https://asians-cloud.github.io/django-celery/charts/django-celery-0.1.6.tgz
-    version: 0.1.6
+    - https://asians-cloud.github.io/django-helm/charts/django-celery-0.1.7.tgz
+    version: 0.1.7
+  django-django:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-06-13T14:29:15.579274+08:00"
-    description: Celery template kubernetes for Gaius Project
-    digest: 7fa85a0716b75905ec46af22c2497de5c15d102e42bec26f5ef89995908667ca
-    name: django-celery
+    created: "2022-06-13T14:44:09.915987+08:00"
+    description: A Helm chart for Kubernetes
+    digest: bbff55912054792979e49592fba8217e4a27b54422b951bc13036a707841b4fa
+    name: django-django
     type: application
     urls:
-    - https://asians-cloud.github.io/django-celery/charts/django-celery-0.1.5.tgz
-    version: 0.1.5
-generated: "2022-06-13T14:29:15.577821+08:00"
+    - https://asians-cloud.github.io/django-helm/charts/django-django-0.1.7.tgz
+    version: 0.1.7
+generated: "2022-06-13T14:44:09.915005+08:00"
