@@ -18,6 +18,7 @@ helm repo update
 ### Install charts
 ```bash
 helm install my-release django/django -f values.yaml
+helm install my-release django/django-celery -f values.yaml
 ```
 
 ### For production
