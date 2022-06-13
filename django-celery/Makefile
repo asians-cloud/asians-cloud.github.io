@@ -1,3 +1,3 @@
 package:
 	helm package . -d ../django-helm/charts; \
-    helm repo index charts --url https://asians-cloud.github.io/django-celery/charts;
+    helm repo index ../django-helm/charts --url https://asians-cloud.github.io/django-celery/charts;
