@@ -3,12 +3,12 @@ entries:
   django-celery:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-06-13T13:46:04.25307+08:00"
+    created: "2022-06-13T13:48:58.249844+08:00"
     description: Celery template kubernetes for Gaius Project
-    digest: 052c032cd98b7e9c705cc4f4b029dabf829bbdebdcfc1dbbb476a0de7f80d739
+    digest: d4e95b6f734d04d0f264ca071777bc3370d7cab029f069bb6c7dc7d34a0ffddf
     name: django-celery
     type: application
     urls:
     - https://asians-cloud.github.io/django-celery/charts/django-celery-0.1.2.tgz
     version: 0.1.2
-generated: "2022-06-13T13:46:04.252689+08:00"
+generated: "2022-06-13T13:48:58.2495+08:00"
