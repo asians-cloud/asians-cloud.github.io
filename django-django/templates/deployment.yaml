@@ -106,13 +106,13 @@ spec:
 #             httpGet:
 #               path: /icinga/
 #               port: daphne
-          readinessProbe:
-            httpGet:
-              path: /icinga/
-              port: daphne
-            initialDelaySeconds: 5
-            timeoutSeconds: 10
-            failureThreshold: 10
+          # readinessProbe:
+            # httpGet:
+              # path: /icinga/
+              # port: daphne
+            # initialDelaySeconds: 5
+            # timeoutSeconds: 10
+            # failureThreshold: 10
           envFrom:
             - configMapRef:
                 name: {{ include "django.fullname" . }}-config
