@@ -31,6 +31,8 @@ data:
       location @process_uwsgi {
         proxy_set_header Host $host;
         proxy_pass  http://django-daphne;
+        proxy_connect_timeout 300s;
+        proxy_read_timeout 300s;
       }
       
       #path to proxy my WebSocket requests
