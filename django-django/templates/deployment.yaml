@@ -31,6 +31,9 @@ spec:
             name: {{ include "django.fullname" . }}-sites-enabled-configmap
         - name: staticfiles
           emptyDir: {}
+        - name: vault-storage
+          persistentVolumeClaim:
+            claimName: "vault-storage"
       serviceAccountName: {{ include "django.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
@@ -118,6 +121,9 @@ spec:
             # initialDelaySeconds: 5
             # timeoutSeconds: 10
             # failureThreshold: 10
+          volumeMounts:
+            - name: vault-storage
+              mountPath: /vault/secrets/
           envFrom:
             - configMapRef:
                 name: {{ include "django.fullname" . }}-config

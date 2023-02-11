@@ -25,6 +25,10 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      volumes:
+        - name: vault-storage
+          persistentVolumeClaim:
+            claimName: "vault-storage"
       serviceAccountName: {{ include "django.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
@@ -66,6 +70,9 @@ spec:
               periodSeconds: 60  # default is quite often and celery uses a lot cpu/ram then.
               timeoutSeconds: 30  # default is too low
           {{- end }}
+          volumeMounts:
+            - name: vault-storage
+              mountPath: /vault/secrets/
           envFrom:
             - configMapRef:
                 name: {{ include "django.fullname" . }}-config
