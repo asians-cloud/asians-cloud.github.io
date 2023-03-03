@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "django.fullname" . }}
+  labels:
+    {{- include "django.labels" . | nindent 4 }}
+spec:
+{{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+{{- end }}
+  selector:
+    matchLabels:
+      {{- include "django.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+    {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      labels:
+        {{- include "django.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      volumes:
+        - name: vault-storage
+          persistentVolumeClaim:
+            claimName: "vault-storage"
+      serviceAccountName: {{ include "django.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+      containers:
+        {{- range .Values.commands }}
+        - name: "{{ .name }}"
+          securityContext:
+            {{- toYaml $.Values.podSecurityContext | nindent 12 }}
+          image: "{{ $.Values.image.repository }}:{{ $.Values.image.tag | default $.Chart.AppVersion }}"
+          imagePullPolicy: {{ $.Values.image.pullPolicy }}
+          command:
+            {{- toYaml .command | nindent 12 }}
+          args:
+            {{- range .args }}
+              - {{ . }}
+            {{- end }}
+          {{- if .livenessProbe }}
+          livenessProbe:
+              exec:
+                command:
+                {{- range .livenessProbe.command }}
+                  - {{ . }}
+                {{- end }}
+              initialDelaySeconds: 60  # startup takes some time
+              periodSeconds: 3600  # default is quite often and celery uses a lot cpu/ram then.
+              timeoutSeconds: 60  # default is too low
+
+          {{- end }}
+          volumeMounts:
+            - name: vault-storage
+              mountPath: /vault/secrets/
+          envFrom:
+            - configMapRef:
+                name: {{ include "django.fullname" $ }}-config
+          resources:
+            {{- toYaml $.Values.resources | nindent 12 }}
+        {{- end }}
+
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
