@@ -16,7 +16,7 @@ rules:
   {{- if .Values.configMapPermissions.enabled }}
   - apiGroups: [""]
     resources: ["configmaps"]
-    verbs: ["get", "update"]
+    verbs: ["get", "update", "patch"]
   {{- end }}
 ---
 kind: RoleBinding
