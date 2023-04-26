@@ -4,6 +4,9 @@
 
 replicaCount: 1
 
+configMapPermissions:
+  enabled: false
+
 image:
   repository: asians-cloud/django-helm-application
   pullPolicy: IfNotPresent

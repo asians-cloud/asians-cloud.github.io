@@ -4,6 +4,10 @@
 
 replicaCount: 1
 
+configMapPermissions:
+  enabled: false
+
+
 image:
   repository: asians-cloud/django-celery-application
   pullPolicy: IfNotPresent
