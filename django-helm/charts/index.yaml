@@ -3,9 +3,9 @@ entries:
   django-celery:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-02-11T08:10:24.56983+08:00"
+    created: "2023-04-27T12:03:31.433233+08:00"
     description: Celery template kubernetes for Gaius Project
-    digest: b3f6dd4ec241024ab140a56c7352c0ae0323d5671d89a5792f104294f786bd6a
+    digest: da1fa092e9b0ad1e3648e12a3b01b4725b668a4a53221bdf64ec473a53519e78
     name: django-celery
     type: application
     urls:
@@ -13,7 +13,7 @@ entries:
     version: 0.1.8
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-02-11T08:10:24.569577+08:00"
+    created: "2023-04-27T12:03:31.432987+08:00"
     description: Celery template kubernetes for Gaius Project
     digest: 7a422f9e68e4d850a294b8e6b7e9fe3185d2f62b20fb22c7e2f06fd09a38f4bb
     name: django-celery
@@ -24,9 +24,9 @@ entries:
   django-django:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-02-11T08:10:24.571945+08:00"
+    created: "2023-04-27T12:03:31.434508+08:00"
     description: A Helm chart for Kubernetes
-    digest: ac333cf275593ef8fb07bace0e480159d8ba0d5451c23d498eae4fb2496584bf
+    digest: 23bcf3e8ff67d3a24da95fa1476e1b7258af3f851d38ac6161eebe39eefb3d5f
     name: django-django
     type: application
     urls:
@@ -34,7 +34,7 @@ entries:
     version: 0.1.14
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-02-11T08:10:24.571638+08:00"
+    created: "2023-04-27T12:03:31.434252+08:00"
     description: A Helm chart for Kubernetes
     digest: fc322d8ebb2d3c8d395dd90ee7a14420c3b411dd6e8e6dcc7b93ea98424b2564
     name: django-django
@@ -44,7 +44,7 @@ entries:
     version: 0.1.13
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-02-11T08:10:24.571334+08:00"
+    created: "2023-04-27T12:03:31.434001+08:00"
     description: A Helm chart for Kubernetes
     digest: e6bbe23ef51e9a1fb9842cb0a07c677f506d34cd0a78e5b314695bffa8533ad4
     name: django-django
@@ -54,7 +54,7 @@ entries:
     version: 0.1.12
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-02-11T08:10:24.57102+08:00"
+    created: "2023-04-27T12:03:31.433738+08:00"
     description: A Helm chart for Kubernetes
     digest: b6d1ad7115e7f17e0c7862d4235db8ffe1aae99b325f901eeec17fdb355eb493
     name: django-django
@@ -64,7 +64,7 @@ entries:
     version: 0.1.11
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-02-11T08:10:24.570685+08:00"
+    created: "2023-04-27T12:03:31.43349+08:00"
     description: A Helm chart for Kubernetes
     digest: c578801fefc97714911aa72bcb48f9f134454bfc3b2125c8767cb4a62f8ae6f1
     name: django-django
@@ -74,7 +74,7 @@ entries:
     version: 0.1.10
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-02-11T08:10:24.572799+08:00"
+    created: "2023-04-27T12:03:31.436477+08:00"
     description: A Helm chart for Kubernetes
     digest: 059c45ccc30fee89756f99153a004a85aaf6cec9263c85ba67b51f186bd97686
     name: django-django
@@ -84,7 +84,7 @@ entries:
     version: 0.1.9
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-02-11T08:10:24.572522+08:00"
+    created: "2023-04-27T12:03:31.436215+08:00"
     description: A Helm chart for Kubernetes
     digest: a87108d233842340db6739504e3c7498595e9aa0d6972e69070faedd06b0c226
     name: django-django
@@ -94,7 +94,7 @@ entries:
     version: 0.1.8
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-02-11T08:10:24.572229+08:00"
+    created: "2023-04-27T12:03:31.435935+08:00"
     description: A Helm chart for Kubernetes
     digest: bbff55912054792979e49592fba8217e4a27b54422b951bc13036a707841b4fa
     name: django-django
@@ -105,7 +105,7 @@ entries:
   django-tgbot:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-02-11T08:10:24.573059+08:00"
+    created: "2023-04-27T12:03:31.43668+08:00"
     description: Celery template kubernetes for Gaius Project
     digest: a6726283533795964328e0a679f9568891f0fea33278a09b3a94b0e3832c3cda
     name: django-tgbot
@@ -113,4 +113,4 @@ entries:
     urls:
     - https://asians-cloud.github.io/django-helm/charts/django-tgbot-0.1.8.tgz
     version: 0.1.8
-generated: "2023-02-11T08:10:24.569233+08:00"
+generated: "2023-04-27T12:03:31.432688+08:00"
