@@ -77,7 +77,7 @@ spec:
             - name: vault-storage
               mountPath: /vault/secrets/
             {{ if .Values.pvc.enabled }}
-            {{-toYaml .Values.pvc.volumeMounts | nindent 12 }}
+            {{- toYaml .Values.pvc.volumeMounts | nindent 12 }}
             {{ end }}
           envFrom:
             - configMapRef:
