@@ -40,7 +40,7 @@ securityContext: {}
   # runAsUser: 1000
 
 pvc:
-  enabled: true
+  enabled: false
   volumes: []
   volumeMounts: []
 
