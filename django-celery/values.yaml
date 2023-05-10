@@ -39,6 +39,11 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
+pvc:
+  enabled: true
+  volumes: []
+  volumeMounts: []
+
 service:
   type: ClusterIP
   port: 8000
