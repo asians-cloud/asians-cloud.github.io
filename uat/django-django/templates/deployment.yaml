@@ -145,8 +145,10 @@ spec:
           preferredDuringSchedulingIgnoredDuringExecution:
             - podAffinityTerm:
                 labelSelector:
-                  matchLabeles:
-                    {{- include "django.selectorLabels" . | nindent 20 }}
+                  matchLabels:
+                    {{- include "django.selectorLabels" . | nindent 18 }}
+                topologyKey: "kubernetes.io/hostname"
+      {{- end }}
       {{- with .Values.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
