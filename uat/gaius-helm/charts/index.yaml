@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  www:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-11-04T15:37:57.919308503+08:00"
+    description: A Helm chart for Kubernetes
+    digest: edda23c7b125c220fea6f1b87d15a2d69e9bf78f349d8f3de530b4337b998fc5
+    name: www
+    type: application
+    urls:
+    - https://asians-cloud.github.io/uat/gaius-helm/charts/www-0.1.0.tgz
+    version: 0.1.0
+generated: "2024-11-04T15:37:57.918887352+08:00"
