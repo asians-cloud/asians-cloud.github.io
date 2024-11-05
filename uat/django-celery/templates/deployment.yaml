@@ -93,6 +93,7 @@ spec:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
             - podAffinityTerm:
+              weight: 100
                 labelSelector:
                   matchLabels:
                     {{- include "django.selectorLabels" . | nindent 20 }}
