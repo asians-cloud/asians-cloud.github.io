@@ -94,7 +94,7 @@ spec:
           preferredDuringSchedulingIgnoredDuringExecution:
             - podAffinityTerm:
                 labelSelector:
-                  matchLabeles:
+                  matchLabels:
                     {{- include "django.selectorLabels" . | nindent 20 }}
       {{- with .Values.tolerations }}
       tolerations:
