@@ -134,20 +134,25 @@ spec:
             - configMapRef:
                 name: {{ include "django.fullname" . }}-config
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml .Values.resources | nindent 12 }} 
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm: 
+              labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/component
+                  operator: NotIn
+                  values:
+                  - test
+                matchLabels:
+                  {{- include "django.selectorLabels" . | nindent 18 }}
+              topologyKey: "kubernetes.io/hostname"
+            weight: 100
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      affinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - podAffinityTerm:
-              weight: 100
-                labelSelector:
-                  matchLabels:
-                    {{- include "django.selectorLabels" . | nindent 18 }}
-                topologyKey: "kubernetes.io/hostname"
       {{- with .Values.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
