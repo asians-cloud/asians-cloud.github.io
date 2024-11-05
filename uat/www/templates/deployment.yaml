@@ -58,6 +58,7 @@ spec:
                 labelSelector:
                   matchLabeles:
                     {{- include "www.selectorLabels" . | nindent 20 }}
+                topologyKey: "kubernetes.io/hostname"
       {{- with .Values.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
