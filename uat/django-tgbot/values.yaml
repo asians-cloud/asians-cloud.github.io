@@ -46,6 +46,8 @@ config: {}
 celerypy:
   enabled: false
   role: "worker"
+
+ingress: {}
   
 deployment:
   args: ['worker', '-l', 'info']
