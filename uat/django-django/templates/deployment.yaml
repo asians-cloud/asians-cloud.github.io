@@ -146,6 +146,7 @@ spec:
                 labelSelector:
                   matchLabels:
                     {{- include "django.selectorLabels" . | nindent 18 }}
+                topologyKey: "kubernetes.io/hostname"
       {{- with .Values.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
