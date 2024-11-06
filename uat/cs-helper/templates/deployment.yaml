@@ -51,10 +51,10 @@ spec:
           resources:
             limits:
               cpu: 500m
-              memory: 1024Mb
+              memory: 1024Mi
             requests:
               cpu: 10m
-              memory: 512Mb
+              memory: 512Mi
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
