@@ -91,12 +91,13 @@ resources:
 
 autoscaling:
   enabled: false
-  minReplicas: 1
-  maxReplicas: 100
+  minReplicas: 3
+  maxReplicas: 5
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
-nodeSelector: {}
+nodeSelector:
+  tier: internal
 
 tolerations: []
 
