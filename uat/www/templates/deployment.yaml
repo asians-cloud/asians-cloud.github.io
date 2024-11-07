@@ -49,18 +49,11 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
       affinity:
         podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-          - podAffinityTerm: 
-              labelSelector:
-                matchExpressions:
-                - key: app.kubernetes.io/component
-                  operator: NotIn
-                  values:
-                  - test
-                matchLabels:
-                  {{- include "www.selectorLabels" . | nindent 18 }}
-              topologyKey: "kubernetes.io/hostname"
-            weight: 100
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels:
+                {{- include "www.selectorLabels" . | nindent 18 }}
+            topologyKey: "kubernetes.io/hostname"
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
