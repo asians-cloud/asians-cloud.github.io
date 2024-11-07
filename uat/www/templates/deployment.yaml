@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: {{ include "www.fullname" . }}
   labels:
+    app: {{ include "www.fullname" . }}
     {{- include "www.labels" . | nindent 4 }}
 spec:
 {{- if not .Values.autoscaling.enabled }}
@@ -18,6 +19,7 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       labels:
+        app: {{ include "www.fullname" . }}
         {{- include "www.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
@@ -47,13 +49,10 @@ spec:
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.affinity }}
       affinity:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchLabels:
-                {{- include "www.selectorLabels" . | nindent 18 }}
-            topologyKey: "kubernetes.io/hostname"
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
