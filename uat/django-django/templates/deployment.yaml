@@ -84,22 +84,10 @@ spec:
               mountPath: /etc/nginx/conf.d/
             - name: staticfiles # only necessary if serving staticfiles locally
               mountPath: /var/www/html/
-#           readinessProbe:
-#             httpGet:
-#               path: /icinga/
-#               port: 8000
-#             initialDelaySeconds: 10
-#             periodSeconds: 10
-#           livenessProbe:
-#             httpGet:
-#               path: /icinga/
-#               port: 8000
-#             initialDelaySeconds: 10
-#             periodSeconds: 10
-#             failureThreshold: 10
           resources:
             requests:
               cpu: 10m
+              memory: 500Mi
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
@@ -119,13 +107,6 @@ spec:
             successThreshold: 1
             timeoutSeconds: 10
             failureThreshold: 5
-          # readinessProbe:
-            # httpGet:
-              # path: /icinga/
-              # port: daphne
-            # initialDelaySeconds: 5
-            # timeoutSeconds: 10
-            # failureThreshold: 10
           volumeMounts:
             - name: vault-storage
               mountPath: /vault/secrets/
