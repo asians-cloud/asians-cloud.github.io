@@ -3,7 +3,7 @@ entries:
   django-celery:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-11-11T17:09:23.497936808+08:00"
+    created: "2024-11-13T09:43:47.98921+08:00"
     description: Celery template kubernetes for Gaius Project
     digest: 08656351669b04974d006f05b2fa100801b6a6d7cb1d6852a7ed8756a414d392
     name: django-celery
@@ -13,7 +13,7 @@ entries:
     version: 0.1.10
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-11-11T17:09:23.499272457+08:00"
+    created: "2024-11-13T09:43:47.991028+08:00"
     description: Celery template kubernetes for Gaius Project
     digest: 6211fe9832a34075277770dfd33151a2057b51aef3398751ed794840f5ee2232
     name: django-celery
@@ -23,7 +23,7 @@ entries:
     version: 0.1.9
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-11-11T17:09:23.498820691+08:00"
+    created: "2024-11-13T09:43:47.990565+08:00"
     description: Celery template kubernetes for Gaius Project
     digest: e4504c5c2e584b8aed3bf8bf298652f9c75bf0184fee1d6daf53661a9fc5f8cb
     name: django-celery
@@ -33,7 +33,7 @@ entries:
     version: 0.1.8
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-11-11T17:09:23.498392485+08:00"
+    created: "2024-11-13T09:43:47.989679+08:00"
     description: Celery template kubernetes for Gaius Project
     digest: 7a422f9e68e4d850a294b8e6b7e9fe3185d2f62b20fb22c7e2f06fd09a38f4bb
     name: django-celery
@@ -44,9 +44,9 @@ entries:
   django-django:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-11-11T17:09:23.501922205+08:00"
+    created: "2024-11-13T09:43:47.993346+08:00"
     description: A Helm chart for Kubernetes
-    digest: edee7d47a4ac0f090b04183a3b5f5f12f8a6cf724d459cfb107c60acaba0d3f5
+    digest: dc997e6d2fad3ccf06bc59ce66d5522e2c0877714d542632332f71b3a28970e4
     name: django-django
     type: application
     urls:
@@ -54,7 +54,7 @@ entries:
     version: 0.1.15
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-11-11T17:09:23.50152614+08:00"
+    created: "2024-11-13T09:43:47.993067+08:00"
     description: A Helm chart for Kubernetes
     digest: 91714a05ee1c209b7149390d4cee229fdae01422666e2a2e63e23da903bab119
     name: django-django
@@ -64,7 +64,7 @@ entries:
     version: 0.1.14
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-11-11T17:09:23.501108584+08:00"
+    created: "2024-11-13T09:43:47.992612+08:00"
     description: A Helm chart for Kubernetes
     digest: fc322d8ebb2d3c8d395dd90ee7a14420c3b411dd6e8e6dcc7b93ea98424b2564
     name: django-django
@@ -74,7 +74,7 @@ entries:
     version: 0.1.13
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-11-11T17:09:23.500612306+08:00"
+    created: "2024-11-13T09:43:47.99228+08:00"
     description: A Helm chart for Kubernetes
     digest: e6bbe23ef51e9a1fb9842cb0a07c677f506d34cd0a78e5b314695bffa8533ad4
     name: django-django
@@ -84,7 +84,7 @@ entries:
     version: 0.1.12
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-11-11T17:09:23.500200061+08:00"
+    created: "2024-11-13T09:43:47.99195+08:00"
     description: A Helm chart for Kubernetes
     digest: b6d1ad7115e7f17e0c7862d4235db8ffe1aae99b325f901eeec17fdb355eb493
     name: django-django
@@ -94,7 +94,7 @@ entries:
     version: 0.1.11
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-11-11T17:09:23.499773984+08:00"
+    created: "2024-11-13T09:43:47.991477+08:00"
     description: A Helm chart for Kubernetes
     digest: c578801fefc97714911aa72bcb48f9f134454bfc3b2125c8767cb4a62f8ae6f1
     name: django-django
@@ -104,7 +104,7 @@ entries:
     version: 0.1.10
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-11-11T17:09:23.503428967+08:00"
+    created: "2024-11-13T09:43:47.994268+08:00"
     description: A Helm chart for Kubernetes
     digest: 059c45ccc30fee89756f99153a004a85aaf6cec9263c85ba67b51f186bd97686
     name: django-django
@@ -114,7 +114,7 @@ entries:
     version: 0.1.9
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-11-11T17:09:23.50294888+08:00"
+    created: "2024-11-13T09:43:47.993969+08:00"
     description: A Helm chart for Kubernetes
     digest: a87108d233842340db6739504e3c7498595e9aa0d6972e69070faedd06b0c226
     name: django-django
@@ -124,7 +124,7 @@ entries:
     version: 0.1.8
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-11-11T17:09:23.502495444+08:00"
+    created: "2024-11-13T09:43:47.993677+08:00"
     description: A Helm chart for Kubernetes
     digest: bbff55912054792979e49592fba8217e4a27b54422b951bc13036a707841b4fa
     name: django-django
@@ -135,7 +135,7 @@ entries:
   django-tgbot:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-11-11T17:09:23.503970425+08:00"
+    created: "2024-11-13T09:43:47.994503+08:00"
     description: Celery template kubernetes for Gaius Project
     digest: f17719b55138ae700d4e99591850dbda82257144b4680204626a91cae1196dfb
     name: django-tgbot
@@ -143,4 +143,4 @@ entries:
     urls:
     - https://asians-cloud.github.io/uat/django-helm/charts/django-tgbot-0.1.8.tgz
     version: 0.1.8
-generated: "2024-11-11T17:09:23.497117937+08:00"
+generated: "2024-11-13T09:43:47.988869+08:00"
