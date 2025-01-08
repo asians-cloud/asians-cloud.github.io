@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: {{ include "django.fullname" . }}
   labels:
+    app: {{ include "django.fullname" . }}
     {{- include "django.labels" . | nindent 4 }}
 spec:
   revisionHistoryLimit: 1
@@ -19,6 +20,7 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       labels:
+        app: {{ include "django.fullname" . }}
         {{- include "django.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
@@ -84,13 +86,12 @@ spec:
                 name: {{ include "django.fullname" . }}-config
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
       {{- with .Values.affinity }}
       affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.tolerations }}
