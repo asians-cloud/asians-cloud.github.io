@@ -6,9 +6,6 @@ metadata:
     app: {{ include "django.fullname" . }}
     {{- include "django.labels" . | nindent 4 }}
 spec:
-{{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
-{{- end }}
   selector:
     matchLabels:
       {{- include "django.selectorLabels" . | nindent 6 }}

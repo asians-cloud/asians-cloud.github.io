@@ -3,9 +3,9 @@ entries:
   cs-helper:
   - apiVersion: v2
     appVersion: "1"
-    created: "2025-01-27T14:23:25.256106255+08:00"
+    created: "2025-01-27T14:51:04.717204283+08:00"
     description: A Helm chart for Kubernetes
-    digest: 477d3b68c7beca52aefb3c05e452dc79ef1e7b6c60f11d2aad350b2ae1863b36
+    digest: e101d8a13603879074446512eb492732c8b8ebb83c10b5bbf2fb0188f7a30743
     name: cs-helper
     type: application
     urls:
@@ -13,7 +13,7 @@ entries:
     version: 0.0.2
   - apiVersion: v2
     appVersion: "1"
-    created: "2025-01-27T14:23:25.255790981+08:00"
+    created: "2025-01-27T14:51:04.716639437+08:00"
     description: A Helm chart for Kubernetes
     digest: e6feaf7efaccf0f77e9ef8dabb325ed212fb141cb759f02bc08ac0d11c53f959
     name: cs-helper
@@ -24,12 +24,12 @@ entries:
   www:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-01-27T14:23:25.256386089+08:00"
+    created: "2025-01-27T14:51:04.71749925+08:00"
     description: A Helm chart for Kubernetes
-    digest: 1b93b7f594215a3ad29bd0b01fd6952afe3eb6591dce67497eac13ba8d51ba1a
+    digest: 1e64ed37bd10c3bb56e5703e60f2f93fa2b4b227f86e18be6ad73c84d96fdd6d
     name: www
     type: application
     urls:
     - https://asians-cloud.github.io/uat/gaius-helm/charts/www-0.1.0.tgz
     version: 0.1.0
-generated: "2025-01-27T14:23:25.255304234+08:00"
+generated: "2025-01-27T14:51:04.716177457+08:00"
