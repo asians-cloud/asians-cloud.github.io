@@ -3,12 +3,10 @@ kind: Deployment
 metadata:
   name: {{ include "django.fullname" . }}
   labels:
+    app: {{ include "django.fullname" . }}
     {{- include "django.labels" . | nindent 4 }}
 spec:
   revisionHistoryLimit: 1
-{{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
-{{- end }}
   selector:
     matchLabels:
       {{- include "django.selectorLabels" . | nindent 6 }}
@@ -19,6 +17,7 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       labels:
+        app: {{ include "django.fullname" . }}
         {{- include "django.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
@@ -82,22 +81,10 @@ spec:
               mountPath: /etc/nginx/conf.d/
             - name: staticfiles # only necessary if serving staticfiles locally
               mountPath: /var/www/html/
-#           readinessProbe:
-#             httpGet:
-#               path: /icinga/
-#               port: 8000
-#             initialDelaySeconds: 10
-#             periodSeconds: 10
-#           livenessProbe:
-#             httpGet:
-#               path: /icinga/
-#               port: 8000
-#             initialDelaySeconds: 10
-#             periodSeconds: 10
-#             failureThreshold: 10
           resources:
             requests:
               cpu: 10m
+              memory: 500Mi
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
@@ -112,18 +99,11 @@ spec:
             httpGet:
                 path: /healthz
                 port: 9000
-            initialDelaySeconds: 10
-            periodSeconds: 10
+            initialDelaySeconds: 30
+            periodSeconds: 15
             successThreshold: 1
             timeoutSeconds: 10
             failureThreshold: 5
-          # readinessProbe:
-            # httpGet:
-              # path: /icinga/
-              # port: daphne
-            # initialDelaySeconds: 5
-            # timeoutSeconds: 10
-            # failureThreshold: 10
           volumeMounts:
             - name: vault-storage
               mountPath: /vault/secrets/
@@ -134,13 +114,13 @@ spec:
             - configMapRef:
                 name: {{ include "django.fullname" . }}-config
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+            {{- toYaml .Values.resources | nindent 12 }} 
       {{- with .Values.affinity }}
       affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.tolerations }}

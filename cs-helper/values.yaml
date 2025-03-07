@@ -4,8 +4,11 @@
 
 replicaCount: 1
 
+configMapPermissions:
+  enabled: false
+
 image:
-  repository: caesar-deployment_common
+  repository: asians-cloud/django-helm-application
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart version.
   tag: "latest"
@@ -36,6 +39,11 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
+pvc:
+  enabled: false
+  volumes: []
+  volumeMounts: []
+
 service:
   type: ClusterIP
   port: 8000
@@ -43,16 +51,33 @@ service:
 # Konga default configuration
 config: {}
 
-celerypy:
+nginx:
+  listenPort: 8000
+  hosts: 
+    - localhost
+
+
+ingress:
   enabled: false
-  role: "worker"
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: django.asians.cloud
+      paths: 
+        - /
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
 
-ingress: {}
-  
-deployment:
-  args: ['worker', '-l', 'info']
-
-resources: {}
+resources:
+  limits:
+    cpu: 500m
+    memory: 1024Mi
+  requests:
+    cpu: 10m
+    memory: 512Mi
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -64,8 +89,8 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
-affinity: {}
-
 nodeSelector: {}
 
 tolerations: []
+
+affinity: {}
