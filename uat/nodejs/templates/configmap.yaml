@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "nodejs.fullname" . }}-config
+  labels:
+    helm.sh/chart: {{ include "nodejs.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+data:
+  NODE_ENV: "{{ .Values.env.NODE_ENV }}"
+  NUXT_BACKEND_API_URL: "{{ .Values.env.NUXT_BACKEND_API_URL }}"
+  NUXT_BASE_URL: " {{ .Values.env.NUXT_BASE_URL }}"
+  NUXT_RECAPTCHA_SITE_KEY: {{ .Values.env.NUXT_RECAPTCHA_SITE_KEY }}
