@@ -71,7 +71,7 @@ spec:
                 name: {{ include "django.fullname" . }}-config
       containers:
         - name: nginx
-          image: nginx:stable
+          image: gaius.azurecr.io/nginx:stable
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
