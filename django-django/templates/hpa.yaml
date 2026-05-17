@@ -1,4 +1,14 @@
-{{- if .Values.autoscaling.enabled }}
+{{- /*
+  Nil-safe: if the user doesn't define an autoscaling block at all,
+  .Values.autoscaling is nil and `.Values.autoscaling.enabled` errors
+  out on stricter helm versions. `default dict` coerces nil to an
+  empty map so .enabled returns nil (treated as false by `if`).
+
+  HPA is also auto-injected by the cluster's Kyverno inject-hpa policy,
+  so most releases leave this block unset — that's the default-off path.
+*/ -}}
+{{- $autoscaling := .Values.autoscaling | default dict -}}
+{{- if $autoscaling.enabled }}
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
