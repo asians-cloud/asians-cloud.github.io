@@ -1,13 +1,31 @@
 # collectstatic-job.yaml
+#
+# Runs as a helm pre-install/pre-upgrade hook. The hook annotations move this
+# Job out of the regular release lifecycle, so `helm upgrade --wait` no longer
+# polls it as part of the release's resources. That fixes the recurring
+# "Job ... NotFound" race where ttlSecondsAfterFinished deleted the completed
+# Job before helm's poller could observe it.
+#
+# - hook-delete-policy: before-hook-creation removes any prior Job with the
+#   same name (so re-runs don't fail with AlreadyExists).
+# - hook-delete-policy: hook-succeeded cleans up after success.
+# - hook-weight: -5 orders ahead of any other pre-deploy hooks.
+#
+# With hooks, the random suffix in the Job name and ttlSecondsAfterFinished
+# are no longer needed — helm's hook lifecycle handles creation/cleanup.
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ include "django.fullname" . }}-collectstatic-job-{{ randAlpha 6 | lower }}
+  name: {{ include "django.fullname" . }}-collectstatic-job
   labels:
     app.kubernetes.io/name: {{ include "django.fullname" . }}
     helm.sh/chart: {{ include "django.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
+  annotations:
+    "helm.sh/hook": pre-install,pre-upgrade
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
 spec:
   template:
     spec:
@@ -25,4 +43,3 @@ spec:
               name: {{ include "django.fullname" . }}-config
       restartPolicy: Never
   backoffLimit: 4
-  ttlSecondsAfterFinished: 100
