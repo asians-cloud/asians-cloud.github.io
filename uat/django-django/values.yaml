@@ -83,9 +83,15 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
-
 affinity: {}
 
 nodeSelector: {}
 
 tolerations: []
+
+# Default to no autoscaling. The cluster's Kyverno inject-hpa policy
+# injects HPAs at admission time, so leaving this off is the normal path.
+# Defined as a map (not absent) so hpa.yaml's lookups stay nil-safe on
+# stricter helm versions.
+autoscaling:
+  enabled: false
