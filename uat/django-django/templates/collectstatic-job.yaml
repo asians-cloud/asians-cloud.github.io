@@ -33,11 +33,17 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      volumes:
+        - name: staticfiles
+          emptyDir: {}
       containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: IfNotPresent
         command: ['python3', 'manage.py', 'collectstatic', '--noinput', '--ignore', 'node_modules']
+        volumeMounts:
+          - name: staticfiles
+            mountPath: /var/www/html/
         envFrom:
           - configMapRef:
               name: {{ include "django.fullname" . }}-config
