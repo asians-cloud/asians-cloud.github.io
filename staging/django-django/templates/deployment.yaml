@@ -71,11 +71,25 @@ spec:
                 name: {{ include "django.fullname" . }}-config
       containers:
         - name: nginx
-          image: nginx:stable
+          image: {{ .Values.nginx.image | default "nginx:stable-alpine" }}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
               protocol: TCP
+          # Pod is Ready only once the sidecar accepts on :8000, and drains on
+          # shutdown -- so a rolling update never routes traffic to a pod whose
+          # proxy isn't up / is terminating (intermittent 404s during deploys).
+          readinessProbe:
+            tcpSocket:
+              port: 8000
+            initialDelaySeconds: 3
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+          lifecycle:
+            preStop:
+              exec:
+                command: ["/bin/sh", "-c", "sleep 8"]
           volumeMounts:
             - name: nginx-conf
               mountPath: /etc/nginx/conf.d/
@@ -104,6 +118,21 @@ spec:
             successThreshold: 1
             timeoutSeconds: 10
             failureThreshold: 5
+          # Gate Service endpoints on daphne actually serving + drain on shutdown
+          # so rolling updates don't 404 (nginx -> dead/terminating :9000).
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 9000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+          lifecycle:
+            preStop:
+              exec:
+                command: ["/bin/sh", "-c", "sleep 8"]
           volumeMounts:
             - name: vault-storage
               mountPath: /vault/secrets/
