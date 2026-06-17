@@ -60,3 +60,20 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Default soft pod anti-affinity (AC-1473): prefer spreading replicas across
+nodes so a single node failure can't take out every replica. Soft (preferred)
+so HPA scale-up never leaves pods Pending when schedulable nodes < replicas.
+Override via `affinity:` in values, or disable with podAntiAffinity.enabled=false.
+*/}}
+{{- define "nodejs.podAntiAffinity" -}}
+podAntiAffinity:
+  preferredDuringSchedulingIgnoredDuringExecution:
+  - weight: 100
+    podAffinityTerm:
+      labelSelector:
+        matchLabels:
+          {{- include "nodejs.selectorLabels" . | nindent 10 }}
+      topologyKey: kubernetes.io/hostname
+{{- end }}
