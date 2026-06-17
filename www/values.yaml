@@ -73,3 +73,8 @@ affinity: {}
 nodeSelector: {}
 
 tolerations: []
+
+# AC-1473: spread replicas across nodes via soft (preferred) pod anti-affinity.
+# Set enabled: false to opt out, or override scheduling entirely via `affinity:` above.
+podAntiAffinity:
+  enabled: true
