@@ -80,7 +80,7 @@ spec:
             {{- toYaml .Values.pvc.volumeMounts | nindent 12 }}
             {{ end }}
           envFrom:
-            - configMapRef:
+            - secretRef:
                 name: {{ include "django.fullname" . }}-config
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

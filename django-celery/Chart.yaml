@@ -3,4 +3,4 @@ appVersion: 1.16.0
 description: Celery template kubernetes for Gaius Project
 name: django-celery
 type: application
-version: 0.1.12
+version: 0.1.13
