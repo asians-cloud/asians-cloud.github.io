@@ -125,11 +125,14 @@ tolerations: []
 
 affinity: {}
 
-env:
-  NODE_ENV: production
-  NUXT_BACKEND_API_URL: https://backend.asians.group
-  NUXT_BASE_URL: https://asians.group
-  NUXT_RECAPTCHA_SITE_KEY: "SECRETS.RECAPTCHA_SITE_KEY"
+# Environment variables for the container, passed through verbatim to a ConfigMap that the
+# Deployment consumes via envFrom. Every key you set here reaches the pod.
+#
+# Intentionally empty. This used to default to asians-group-web's own settings
+# (https://backend.asians.group, https://asians.group, a recaptcha placeholder), which meant an
+# app that forgot to set them silently inherited another app's configuration. Each release must
+# supply its own env.
+env: {}
 # AC-1473: spread replicas across nodes via soft (preferred) pod anti-affinity.
 # Set enabled: false to opt out, or override scheduling entirely via `affinity:` above.
 podAntiAffinity:

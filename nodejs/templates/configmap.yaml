@@ -7,7 +7,19 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 data:
-  NODE_ENV: "{{ .Values.env.NODE_ENV }}"
-  NUXT_BACKEND_API_URL: "{{ .Values.env.NUXT_BACKEND_API_URL }}"
-  NUXT_BASE_URL: " {{ .Values.env.NUXT_BASE_URL }}"
-  NUXT_RECAPTCHA_SITE_KEY: {{ .Values.env.NUXT_RECAPTCHA_SITE_KEY }}
+  {{- /*
+    Render every key the release supplies under `env`.
+
+    This previously hardcoded four of asians-group-web's variables (NODE_ENV,
+    NUXT_BACKEND_API_URL, NUXT_BASE_URL, NUXT_RECAPTCHA_SITE_KEY) and nothing else. Any other
+    app on this supposedly generic chart had its whole environment silently dropped: Helm
+    accepted the values, the ConfigMap ignored them, and the container booted with
+    asians-group-web's defaults from values.yaml. gaius-docs hit exactly that — its Keycloak
+    variables never reached the pod, so the site came up with no authentication at all.
+
+    NUXT_BASE_URL also carried a stray leading space in its template (" {{ ... }}"), shipping a
+    value of " https://asians.group". Iterating fixes that too.
+  */}}
+  {{- range $key, $value := .Values.env }}
+  {{ $key }}: {{ $value | quote }}
+  {{- end }}
